@@ -1,0 +1,149 @@
+:root {
+  --fondo: #0f172a;
+  --fondo-panel: #1e293b;
+  --fondo-burbuja-bot: #334155;
+  --fondo-burbuja-user: #2563eb;
+  --texto: #e2e8f0;
+  --texto-suave: #94a3b8;
+  --acento: #38bdf8;
+  --borde: #334155;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.6rem;
+  background: var(--fondo-panel);
+  border-bottom: 1px solid var(--borde);
+}
+
+.cabecera-titulo { display: flex; align-items: center; gap: 0.8rem; }
+.logo { font-size: 1.9rem; }
+.cabecera h1 { font-size: 1.3rem; }
+.subtitulo { font-size: 0.8rem; color: var(--texto-suave); }
+
+.estado {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; padding: 0.4rem 0.9rem;
+  border-radius: 999px; background: var(--fondo);
+}
+.punto { width: 10px; height: 10px; border-radius: 50%; }
+.estado-desconocido .punto { background: #facc15; }
+.estado-ok .punto { background: #22c55e; }
+.estado-error .punto { background: #ef4444; }
+
+.principal {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1rem;
+  padding: 1rem 1.6rem;
+  flex: 1;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.panel-chat {
+  display: flex; flex-direction: column;
+  background: var(--fondo-panel);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 70vh;
+}
+
+.chat {
+  flex: 1; overflow-y: auto;
+  padding: 1.2rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+}
+
+.mensaje { display: flex; }
+.mensaje.user { justify-content: flex-end; }
+.mensaje.bot { justify-content: flex-start; }
+
+.burbuja {
+  max-width: 78%;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.mensaje.user .burbuja { background: var(--fondo-burbuja-user); border-bottom-right-radius: 4px; }
+.mensaje.bot .burbuja { background: var(--fondo-burbuja-bot); border-bottom-left-radius: 4px; }
+
+.compositor {
+  display: flex; gap: 0.6rem;
+  padding: 0.8rem;
+  border-top: 1px solid var(--borde);
+  background: var(--fondo-panel);
+}
+.compositor textarea {
+  flex: 1; resize: none;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px; border: 1px solid var(--borde);
+  background: var(--fondo); color: var(--texto);
+  font-family: inherit; font-size: 0.95rem;
+}
+.compositor textarea:focus { outline: 2px solid var(--acento); }
+
+button {
+  background: var(--fondo-burbuja-user);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 0.7rem 1.4rem; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s;
+}
+button:hover { opacity: 0.9; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button.secundario { background: var(--fondo-burbuja-bot); width: 100%; }
+
+.panel-control {
+  background: var(--fondo-panel);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 1.2rem;
+  align-self: start;
+}
+.panel-control h2 {
+  font-size: 1rem; margin-bottom: 1rem;
+  color: var(--acento);
+  border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem;
+}
+.control { margin-bottom: 1.1rem; }
+.control label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.control output { color: var(--acento); font-weight: 600; }
+.control input[type="range"] { width: 100%; accent-color: var(--acento); }
+.control small { color: var(--texto-suave); font-size: 0.75rem; }
+.control select {
+  width: 100%; padding: 0.5rem; border-radius: 8px;
+  background: var(--fondo); color: var(--texto); border: 1px solid var(--borde);
+}
+
+.metricas { list-style: none; font-size: 0.85rem; }
+.metricas li {
+  display: flex; justify-content: space-between;
+  padding: 0.4rem 0; border-bottom: 1px dashed var(--borde);
+}
+.metricas span { color: var(--texto-suave); }
+.nota { font-size: 0.72rem; color: var(--texto-suave); margin-top: 0.7rem; }
+
+.nuevo-mensaje { margin-top: 1rem; }
+.finalizado { opacity: 0.6; font-size: 0.7rem; }
+
+@media (max-width: 860px) {
+  .principal { grid-template-columns: 1fr; }
+  .burbuja { max-width: 92%; }
+}

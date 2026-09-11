@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+informe/informe_final.pdf
+informe/informe_final.docx
+informe/arquitectura.png
+pruebas/resultados.json
