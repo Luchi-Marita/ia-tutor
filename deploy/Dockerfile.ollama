@@ -1,0 +1,5 @@
+FROM ollama/ollama:latest
+WORKDIR /root
+COPY deploy/iniciar.sh /iniciar.sh
+RUN chmod +x /iniciar.sh
+CMD ["/iniciar.sh"]
